@@ -1,0 +1,296 @@
+:root {
+    --small-font: 1.4rem;
+    --get-method: rgb(52, 109, 219);
+    --background-color: rgb(245, 247, 249);
+    --text-color: rgb(59, 69, 78);
+    --type-color: rgb(52, 109, 219);
+    --bright-text-color: rgb(92, 105, 117);
+    --light-text-color: rgb(136, 153, 168);
+    --fainting-color: #f5f7f9;
+    --important-color: rgb(211, 61, 61);
+    --status-ok: rgb(0, 136, 71);
+    --status-bad: rgb(185, 94, 4);
+  }
+
+html, body{
+  text-rendering: optimizelegibility;
+  margin: 0;
+  padding: 0;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    color: var(--text-color);
+}
+
+details,
+summary {
+    width: 100%;
+}
+
+
+details #detailItems{
+    padding: 0 0 1rem 2rem;
+}
+
+details #detailItems > p:first-of-type{
+    margin-bottom:2.5rem;
+}
+
+details > summary {
+    list-style: none;
+}
+
+details > summary::marker,
+details > summary::-webkit-details-marker {
+    display: flex;
+}
+
+section > details[open] > summary:not(.httpResponse):before{
+    transform: rotate(0);
+}
+
+section > details > summary:not(.httpResponse):before {
+    content: "";
+    opacity: 0.6;
+    background-image: url("./arrow.svg");
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: calc(1.6 * 1.25rem);
+    height: calc(1.6 * 1.25rem);
+    position: absolute;
+    top: .33rem;
+    left: -.5rem;
+    transform: rotate(-90deg);
+    flex-shrink: 0;
+}
+
+summary{
+    position: relative;
+}
+
+summary div{
+    margin:1rem 2rem;
+}
+
+section{
+    margin: 0;
+    padding: 1rem 1rem 1rem 2rem;
+    border: 1px solid rgb(227, 232, 237);
+    border-radius: .5rem;
+    width: fit-content;
+    min-width: 35rem;
+}
+
+#baseUrl{
+    color: var(--light-text-color);
+    font-size: var(--small-font)
+}
+
+.method{
+    background-color: var(--get-method);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: var(--small-font);
+    color: white;
+    border-radius: 1rem;
+    padding: .25rem .75rem;
+    margin-right:1rem;
+    margin-left: -.25rem;
+}
+
+.path{
+    font-weight:600;
+    font-size: var(--small-font);
+    color: var(--text-color);
+}
+
+#pathDetails{
+    color: var(--bright-text-color);
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: var(--small-font);
+    margin-bottom: 3.2rem;
+}
+
+#pathDetails div{
+    display: inline;
+    padding: 1rem 0;
+    font-weight: 500;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+#pathDetails div:first-child{
+    width: 10.5rem;
+    padding: 0;
+}
+
+#pathDetails div:nth-child(2){
+    width: 6rem;
+        padding: 0;
+
+}
+
+#pathDetails div:last-child{
+    flex: 1 1 0%;
+    margin-right: 2.5rem;
+        padding: 0;
+
+}
+
+.httpResponse{
+    border-bottom: 1px solid var(--fainting-color);
+    display: flex;
+    flex-direction: column;
+    color: var(--bright-text-color);
+    padding: 1rem 0;
+    font-size: var(--small-font);
+    position: relative;
+    line-height: 1.5rem;
+}
+
+.httpResponse details > summary {
+    width: 100%;
+        position: relative;  /* Add this line */
+}
+
+.httpResponse summary{
+    text-align: right;
+        position: relative;
+}
+
+.httpResponse details[open] > summary:before {
+    transform: rotate(0);
+}
+
+.httpResponse summary:before{
+    content: "";  /* Add this line */
+    right: 0;
+    cursor: pointer;
+    top: -1.4rem;
+    background-image: url("./arrow.svg");
+    transform: rotate(-90deg);
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+}
+
+.httpResponse details .summary-content{
+    padding: 0 2rem;
+}
+
+.httpResponseContainer{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.httpResponseContainer .statusDescription{
+    margin-left: -2.5rem;
+}
+
+.httpStatus{
+    width: 19rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+}
+
+.httpResponse details .schema{
+    background-color: var(--background-color);
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+    margin-top: 1.6rem;
+}
+
+.httpResponse .schema details{
+    margin-left: 1.6rem;
+}
+
+
+.httpResponse details .schema details[open] > summary:before{
+    content: "‒";  /* Add this line */
+}
+
+.httpResponse details .schema summary:before{
+    content: "+";  /* Add this line */
+    font-weight: 500;
+    cursor: pointer;
+    background-image:none;
+    transform: rotate(0);
+    color: var(--type-color);
+    font-size: 1.6rem;
+    position: absolute;
+    left: -1.6rem;
+    top: 0;
+}
+
+.httpResponse details .schema summary{
+    text-align: left;
+    color: var(--text-color);
+}
+
+.httpResponse details .schema div{
+    margin-left: 1.6rem;
+}
+
+.httpResponse details .schema .type{
+    color: var(--type-color);
+    margin-bottom: 0;
+}
+
+.httpResponse details .schema .comment{
+    margin:0;
+    color: var(--light-text-color);
+    font-weight: 500;
+}
+
+.title {
+    font-weight: 600;
+    line-height: 1.5rem;
+    color: var(--text-color);
+    margin-right: 1rem;
+}
+
+.pathName, .httpResponse details .schema .type{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.required {
+    color: var(--important-color);
+}
+
+.subtitle {
+    font-size: var(--small-font);
+    font-weight: 700;
+}
+
+
+/* SVG Styling */
+.circle-svg {
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  margin-right: .5rem;
+}
+
+.circle-path {
+  fill: currentColor;
+}
+.httpStatus.ok .circle-path {
+  fill: var(--status-ok);
+}
+
+.httpStatus.bad .circle-path {
+  fill: var(--status-bad);
+}
+
+.httpStatus.blue .circle-path {
+  fill: rgb(0, 0, 255);
+}

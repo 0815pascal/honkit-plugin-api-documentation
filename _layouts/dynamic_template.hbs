@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>{{title}}</title>
+    <link type="text/css" href="./style.css" rel="stylesheet"/>
+</head>
+<body>
+    <section>
+        <details>
+            <summary>
+                <div>
+                    <span class="method">{{method}}</span>
+                    <span id="baseUrl">
+                        <span>{{baseUrl}}</span><span class="path">{{path}}</span>
+                    </span>
+                    <p class="title">{{apiTitle}}</p>
+                </div>
+            </summary>
+            <div id="detailItems">
+                <p>{{description}}</p>
+                <p class="title">Parameters</p>
+                <p class="subtitle">Path</p>
+                <div id="pathDetails">
+                    <div class="pathName">{{paramName}}<span class="required">{{required}}</span></div>
+                    <div class="type">{{type}}</div>
+                    <div class="pathDescription">{{paramDescription}}</div>
+                </div>
+                <p class="title">Responses</p>
+                <!-- Looping through each response -->
+                {{#each responses}}
+                <div class="httpResponse">
+                    <div class="httpResponseContainer">
+                        <div class="httpStatus {{status}}">
+                            <svg class="circle-svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet">
+                                <path class="circle-path" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path>
+                            </svg>
+                        {{httpCode}}: {{httpMessage}}</div>
+                        <div class="statusDescription">{{statusDescription}}</div>
+                    </div>
+                    {{#if schema}} <!-- Check if schema exists -->
+                    <details>
+                        <summary></summary>
+                        <div class="schema">
+                            <p class="type">{{schema.type}}</p>
+                            <div>
+                            {{#renderProperties schema.properties}}
+                            {{/renderProperties}}
+                            </div>
+                        </div>
+                    </details>
+                    {{/if}} <!-- End check -->
+                </div>
+                {{/each}}
+            </div>
+        </details>
+    </section>
+</body>
+</html>
