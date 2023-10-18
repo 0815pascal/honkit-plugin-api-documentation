@@ -1,9 +1,10 @@
 const fs = require('fs');
 const Handlebars = require('handlebars');
 const path = require('path');
+const pretty = require('pretty-print-json')
 
 // Read and compile the template
-const templateSource = fs.readFileSync(path.join(__dirname, '_layouts', 'dynamic_template.hbs'), 'utf8');
+const templateSource = fs.readFileSync(path.join(__dirname, '_layouts', 'dynamic_template.hbs', 'form.html'), 'utf8');
 console.log("Template Source:", templateSource);
 
 Handlebars.registerHelper('renderProperties', function(properties, options) {
@@ -48,7 +49,7 @@ const template = Handlebars.compile(templateSource);
 module.exports = {
   book: {
     assets: './assets',
-    js: [],
+    js: ['js/pretty-print-json-bundle.js'],
     css: ['style.css']
   },
   hooks: {
