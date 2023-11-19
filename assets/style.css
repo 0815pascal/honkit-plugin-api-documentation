@@ -1,6 +1,14 @@
 :root {
     --small-font: 1.4rem;
+    --connect-method: rgb(185, 94, 4);
+    --delete-method: rgb(211, 61, 61);
     --get-method: rgb(52, 109, 219);
+    --head-method: rgb(185, 94, 4);
+    --options-method: rgb(115, 92, 255);
+    --patch-method: rgb(185, 94, 4);
+    --post-method: rgb(0, 136, 71);
+    --put-method: rgb(185, 94, 4);
+    --trace-method: rgb(185, 94, 4);
     --background-color: rgb(245, 247, 249);
     --text-color: rgb(59, 69, 78);
     --type-color: rgb(52, 109, 219);
@@ -88,8 +96,11 @@ section{
     font-size: var(--small-font)
 }
 
+.get{ background-color: var(--get-method); }
+.post{ background-color: var(--post-method); }
+.put{ background-color: var(--put-method);}
+
 .method{
-    background-color: var(--get-method);
     text-transform: uppercase;
     font-weight: 700;
     font-size: var(--small-font);
@@ -106,7 +117,7 @@ section{
     color: var(--text-color);
 }
 
-#pathDetails{
+#pathDetails, #requestBody{
     color: var(--bright-text-color);
     display: flex;
     flex-direction: row;
@@ -116,7 +127,7 @@ section{
     margin-bottom: 3.2rem;
 }
 
-#pathDetails div{
+#pathDetails div, #requestBody div{
     display: inline;
     padding: 1rem 0;
     font-weight: 500;
@@ -124,18 +135,18 @@ section{
     overflow-wrap: break-word;
 }
 
-#pathDetails div:first-child{
+#pathDetails div:first-child, #requestBody div:first-child{
     width: 10.5rem;
     padding: 0;
 }
 
-#pathDetails div:nth-child(2){
+#pathDetails div:nth-child(2), #requestBody div:nth-child(2){
     width: 6rem;
         padding: 0;
 
 }
 
-#pathDetails div:last-child{
+#pathDetails div:last-child, #requestBody div:last-child{
     flex: 1 1 0%;
     margin-right: 2.5rem;
         padding: 0;

@@ -1,0 +1,67 @@
+<html lang="{{ config.language }}" {% if page.dir == "rtl" %}dir="rtl"{% endif %}>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{ config.title|d("HonKit", true) }}{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="generator" content="HonKit {{ gitbook.version }}">
+            {% if config.author %}<meta name="author" content="{{ config.author }}">{% endif %}
+        {% if config.isbn %}<meta name="identifier" content="{{ config.isbn }}" scheme="ISBN">{% endif %}
+        {% block style %}
+            {% for resource in plugins.resources.css %}
+                {% if resource.url %}
+                <link rel="stylesheet" href="{{ resource.url }}">
+                {% else %}
+                <link rel="stylesheet" href="{{ resource.path|resolveAsset }}">
+                {% endif %}
+            {% endfor %}
+        {% endblock %}
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <!-- form.html -->
+<form id="json-form">
+        <!-- Top-level fields -->
+<fieldset>
+<legend>Basics</legend>
+<label for="titleInput">Title:</label><input type="text" id="titleInput" name="title" placeholder="Title" /><br>
+<label for="methodInput">Method:</label>
+    <select name="method" placeholder="Method">
+        <option value="get">GET</option>
+        <option value="post">POST</option>
+        <option value="patch">PATCH</option>
+        <option value="put">PUT</option>
+        <option value="delete">DELETE</option>
+    </select><br>
+<label for="baseUrlInput">Base URL:</label><input type="text" id="baseUrlInput" name="baseUrl" placeholder="Base URL" value={{ book.baseUrl }}/><br>
+<label for="pathInput">Path:</label><input type="text" id="pathInput" name="path" placeholder="Path" /><br>
+<label for="apiTitleInput">API Title:</label><input type="text" id="apiTitleInput" name="apiTitle" placeholder="API Title" /><br>
+<label for="descriptionInput">Description:</label><input type="text" id="descriptionInput" name="description" placeholder="Description" /><br>
+</fieldset>
+
+<!-- Parameter details -->
+<fieldset>
+<legend>Path parameters</legend>
+<label for="paramNameInput">Parameter Name:</label><input type="text" id="paramNameInput" name="paramName" placeholder="Parameter Name" /><br>
+<label for="requiredInput">Required:</label>
+    <input type="hidden" name="required" value="false">
+    <input type="checkbox" id="requiredInput" name="required" value="true"><br>
+<label for="typeInput">Type:</label><input type="text" id="typeInput" name="type" placeholder="Type" /><br>
+<label for="paramDescriptionInput">Parameter Description:</label><input type="text" id="paramDescriptionInput" name="paramDescription" placeholder="Parameter Description" /><br>
+</fieldset>
+
+
+        <!-- Responses (Dynamic Part) -->
+        <div id="responses-container">
+            <!-- Dynamically added response sections will go here -->
+        </div>
+        <button type="button" id="add-response">Add Response</button><br>
+
+        <input type="submit" value="Generate JSON">
+    </form>
+<pre id="json-output"></pre>
+    </body>
+</html>
+
+
+

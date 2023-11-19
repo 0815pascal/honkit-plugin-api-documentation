@@ -6,7 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["honkit", "gitbook", "plugin", "dynamic", "template"],
+  "keywords": [
+    "honkit",
+    "gitbook",
+    "plugin",
+    "dynamic",
+    "template"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {

@@ -48,10 +48,30 @@ const template = Handlebars.compile(templateSource);
 module.exports = {
   book: {
     assets: './assets',
-    js: [],
+    js: ['js/formHandler.js'],
     css: ['style.css']
   },
   hooks: {
+  "init": function() {
+            // Paths for the new Markdown file and SUMMARY.md
+            const mdFilePath = path.join(this.resolve(''), 'jsonCreator.md');
+            const summaryPath = path.join(this.resolve(''), 'SUMMARY.md');
+
+            // Content for the new Markdown file
+            const mdContent = '{% include "./honkit-plugin-api-documentation/_layouts/form.hbs" %}';
+            const summaryLink = '\n* [JSON Creator](jsonCreator.md)'; // Format as needed
+
+            // Check if the Markdown file already exists
+            if (!fs.existsSync(mdFilePath)) {
+                fs.writeFileSync(mdFilePath, mdContent);
+            }
+
+            // Check if the link is already in SUMMARY.md
+            const summaryContent = fs.readFileSync(summaryPath, 'utf-8');
+            if (!summaryContent.includes(summaryLink.trim())) {
+                fs.appendFileSync(summaryPath, summaryLink);
+            }
+        },
     'page:before': async function(page) {
       const markerStart = '<!-- DYNAMIC_TEMPLATE_START -->';
       const markerEnd = '<!-- DYNAMIC_TEMPLATE_END -->';
@@ -71,6 +91,7 @@ module.exports = {
 
         let data;
         try {
+        console.log(markerContent.trim())
           data = JSON.parse(markerContent.trim());
         } catch (error) {
           console.error('Error parsing JSON for dynamic template:', error);
