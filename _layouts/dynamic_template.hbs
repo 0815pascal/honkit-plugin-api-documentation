@@ -1,7 +1,6 @@
 <html>
 <head>
     <title>{{title}}</title>
-    <link type="text/css" href="./style.css" rel="stylesheet"/>
 </head>
 <body>
     <section>
@@ -9,7 +8,7 @@
             <summary>
                 <div>
                     <p>
-                        <span class="method">{{method}}</span>
+                        <span class="method {{method}}">{{method}}</span>
                         <span id="baseUrl">
                             <span>{{baseUrl}}</span><span class="path">{{path}}</span>
                         </span>
@@ -22,6 +21,12 @@
                 <p class="title">Parameters</p>
                 <p class="subtitle">Path</p>
                 <div id="pathDetails">
+                    <div class="pathName">{{paramName}}<span class="required">{{required}}</span></div>
+                    <div class="type">{{type}}</div>
+                    <div class="pathDescription">{{paramDescription}}</div>
+                </div>
+                <p class="subtitle">Body</p>
+                <div id="requestBody">
                     <div class="pathName">{{paramName}}<span class="required">{{required}}</span></div>
                     <div class="type">{{type}}</div>
                     <div class="pathDescription">{{paramDescription}}</div>

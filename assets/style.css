@@ -1,6 +1,14 @@
 :root {
     --small-font: 1.4rem;
+    --connect-method: rgb(185, 94, 4);
+    --delete-method: rgb(211, 61, 61);
     --get-method: rgb(52, 109, 219);
+    --head-method: rgb(185, 94, 4);
+    --options-method: rgb(115, 92, 255);
+    --patch-method: rgb(185, 94, 4);
+    --post-method: rgb(0, 136, 71);
+    --put-method: rgb(185, 94, 4);
+    --trace-method: rgb(185, 94, 4);
     --background-color: rgb(245, 247, 249);
     --text-color: rgb(59, 69, 78);
     --type-color: rgb(52, 109, 219);
@@ -30,7 +38,7 @@ summary {
 
 
 details #detailItems{
-    padding: 0 0 1rem 2rem;
+    padding: 0 0 1rem 3rem;
 }
 
 details #detailItems > p:first-of-type{
@@ -38,7 +46,7 @@ details #detailItems > p:first-of-type{
 }
 
 details > summary {
-    list-style: none;
+    cursor:pointer;
 }
 
 details > summary::marker,
@@ -71,7 +79,7 @@ summary{
 }
 
 summary div{
-    margin:1rem 2rem;
+    margin:1rem 3rem;
 }
 
 section{
@@ -85,11 +93,15 @@ section{
 
 #baseUrl{
     color: var(--light-text-color);
-    font-size: var(--small-font)
+    font-size: var(--small-font);
+    line-height: 2rem;
 }
 
+.get{ background-color: var(--get-method); }
+.post{ background-color: var(--post-method); }
+.put{ background-color: var(--put-method);}
+
 .method{
-    background-color: var(--get-method);
     text-transform: uppercase;
     font-weight: 700;
     font-size: var(--small-font);
@@ -106,7 +118,7 @@ section{
     color: var(--text-color);
 }
 
-#pathDetails{
+#pathDetails, #requestBody{
     color: var(--bright-text-color);
     display: flex;
     flex-direction: row;
@@ -116,30 +128,28 @@ section{
     margin-bottom: 3.2rem;
 }
 
-#pathDetails div{
+#pathDetails div, #requestBody div{
     display: inline;
     padding: 1rem 0;
-    font-weight: 500;
     white-space: pre-wrap;
     overflow-wrap: break-word;
 }
 
-#pathDetails div:first-child{
-    width: 10.5rem;
+#pathDetails div:first-child, #requestBody div:first-child{
+    width: 20rem;
+    padding: 0;
+    font-weight: 600;
+}
+
+#pathDetails div:nth-child(2), #requestBody div:nth-child(2){
+    width: 9rem;
     padding: 0;
 }
 
-#pathDetails div:nth-child(2){
-    width: 6rem;
-        padding: 0;
-
-}
-
-#pathDetails div:last-child{
+#pathDetails div:last-child, #requestBody div:last-child{
     flex: 1 1 0%;
     margin-right: 2.5rem;
-        padding: 0;
-
+    padding: 0;
 }
 
 .httpResponse{
@@ -154,8 +164,9 @@ section{
 }
 
 .httpResponse details > summary {
-    width: 100%;
-        position: relative;  /* Add this line */
+    cursor: pointer;
+    position: relative; 
+    width: fit-content;
 }
 
 .httpResponse summary{
@@ -168,10 +179,10 @@ section{
 }
 
 .httpResponse summary:before{
-    content: "";  /* Add this line */
+    content: "";
     right: 0;
     cursor: pointer;
-    top: -1.4rem;
+    top: -2rem;
     background-image: url("./arrow.svg");
     transform: rotate(-90deg);
     width: 1.25rem;
@@ -190,11 +201,11 @@ section{
 }
 
 .httpResponseContainer .statusDescription{
-    margin-left: -2.5rem;
+    /* empty */
 }
 
 .httpStatus{
-    width: 19rem;
+    width: 29rem;
     font-weight: 700;
     color: var(--text-color);
     display: flex;
@@ -215,11 +226,11 @@ section{
 
 
 .httpResponse details .schema details[open] > summary:before{
-    content: "‒";  /* Add this line */
+    content: "‒";
 }
 
 .httpResponse details .schema summary:before{
-    content: "+";  /* Add this line */
+    content: "+";
     font-weight: 500;
     cursor: pointer;
     background-image:none;
@@ -228,7 +239,7 @@ section{
     font-size: 1.6rem;
     position: absolute;
     left: -1.6rem;
-    top: 0;
+    top: calc(1rem / 16);
 }
 
 .httpResponse details .schema summary{
@@ -243,6 +254,7 @@ section{
 .httpResponse details .schema .type{
     color: var(--type-color);
     margin-bottom: 0;
+    line-height: 2rem;
 }
 
 .httpResponse details .schema .comment{
@@ -253,12 +265,11 @@ section{
 
 .title {
     font-weight: 600;
-    line-height: 1.5rem;
     color: var(--text-color);
     margin-right: 1rem;
 }
 
-.pathName, .httpResponse details .schema .type{
+.pathName, .httpResponse details .schema .type, .httpResponse details .schema summary{
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -293,4 +304,12 @@ section{
 
 .httpStatus.blue .circle-path {
   fill: rgb(0, 0, 255);
+}
+
+.markdown-section * {
+    line-height: 2.2rem;
+}
+
+.markdown-section section {
+    margin: 1rem 0;
 }

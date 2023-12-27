@@ -1,1 +1,0 @@
-global.prettyPrintJson = require('pretty-print-json');
