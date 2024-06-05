@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/0815pascal/honkit-plugin-api-documentation"
   },
-  "version": "0.0.1",
+  "version": "0.2.0",
   "main": "index.js",
   "description": "A Honkit plugin to dynamically generate an API documentation using Handlebars",
   "keywords": [
