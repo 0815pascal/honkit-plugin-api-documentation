@@ -14,12 +14,25 @@ function getNonEmptyObject(obj) {
   return null; // Return null if the object is empty
 }
 
-function getMethod(data, path) {
+function tryPaths(data, firstKey) {
+  const pathData = data.paths[firstKey];
+  if (!pathData) {
+    return data.paths["/"] ?? null;
+  }
+  return pathData;
+}
+
+function tryWithProperty(pathData, property) {
+  console.log("respi", property, pathData?.post?.[property]);
+  return pathData?.get?.[property] ?? pathData?.post?.[property] ?? pathData?.post?.[property] ?? null;
+}
+
+function getMethod(data, firstKey) {
   if (typeof data !== "object" || data === null) {
     throw new Error("data is not an object");
   }
 
-  if (typeof path !== "string") {
+  if (typeof firstKey !== "string") {
     throw new Error("Path must be a string");
   }
 
@@ -27,34 +40,17 @@ function getMethod(data, path) {
     return data;
   }
 
-  const pathData = data.paths[path];
+  const pathData = tryPaths(data, firstKey);
   if (!pathData) {
     return null;
   }
 
   const key = Object.keys(pathData).find((key) => pathData[key]);
+
   if (!key) {
     return null;
   }
   return key;
-}
-
-function getParameters(data, path) {
-  if (!data?.paths) {
-    return data; // or a default value, or throw an error, as appropriate
-  }
-
-  const pathData = data.paths[path];
-  if (!pathData) {
-    return null; // or a default value, or throw an error
-  }
-
-  const parameters = pathData?.get?.parameters;
-  console.log(parameters);
-  if (!parameters) {
-    return null;
-  }
-  return parameters.length > 0 ? parameters[0] : null;
 }
 
 function transformObject(obj) {
@@ -96,18 +92,35 @@ function transformObject(obj) {
   return { responses };
 }
 
-function getResponses(data, path) {
+function getParameters(data, firstKey) {
   if (!data?.paths) {
-    return data; // or a default value, or throw an error, as appropriate
+    return ""; // or a default value, or throw an error, as appropriate
   }
 
-  const pathData = data.paths[path];
+  const pathData = tryPaths(data, firstKey);
   if (!pathData) {
     return null; // or a default value, or throw an error
   }
 
-  const responses = pathData?.get?.responses;
-  console.log(responses);
+  const parameters = tryWithProperty(pathData, "parameters");
+  if (!parameters) {
+    return null;
+  }
+  return parameters.length > 0 ? parameters[0] : null;
+}
+
+function getResponses(data, firstKey) {
+  const pathData = tryPaths(data, firstKey);
+  if (!pathData) {
+    console.error(data.paths);
+    return null; // or a default value, or throw an error, as appropriate
+  }
+
+  if (!pathData) {
+    return null; // or a default value, or throw an error
+  }
+
+  const responses = tryWithProperty(pathData, "responses");
   if (!responses) {
     return null;
   }

@@ -1,7 +1,9 @@
 <html>
+
 <head>
     <title>{{title}}</title>
 </head>
+
 <body>
     <section>
         <details>
@@ -10,7 +12,7 @@
                     <p>
                         <span class="method {{method}}">{{method}}</span>
                         <span id="baseUrl">
-                            <span>{{baseUrl}}</span><span class="path">{{path}}</span>
+                            <span>{{baseUrl}}/</span><span class="path">{{path}}</span>
                         </span>
                     </p>
                     <p class="title">{{apiTitle}}</p>
@@ -19,18 +21,24 @@
             <div id="detailItems">
                 <p>{{description}}</p>
                 <p class="title">Parameters</p>
+                {{#if path}}
                 <p class="subtitle">Path</p>
                 <div id="pathDetails">
-                    <div class="pathName">{{paramName}}<span class="required">{{required}}</span></div>
+                    <div class="pathName">{{path}}</div>
                     <div class="type">{{type}}</div>
                     <div class="pathDescription">{{paramDescription}}</div>
                 </div>
+                {{/if}}
+                {{#if requestBody}} <!-- Check if schema exists -->
                 <p class="subtitle">Body</p>
-                <div id="requestBody">
-                    <div class="pathName">{{paramName}}<span class="required">{{required}}</span></div>
-                    <div class="type">{{type}}</div>
-                    <div class="pathDescription">{{paramDescription}}</div>
-                </div>
+                <details id="requestBody">
+                    <summary>{{requestBody.type}}</summary>
+                    <div class="schema">
+                        {{#renderProperties requestBody.properties}}
+                        {{/renderProperties}}
+                    </div>
+                </details>
+                {{/if}} <!-- End check -->
                 <p class="title">Responses</p>
                 <!-- Looping through each response -->
                 {{#each responses}}
@@ -38,9 +46,11 @@
                     <div class="httpResponseContainer">
                         <div class="httpStatus {{status}}">
                             <svg class="circle-svg" viewBox="0 0 8 16" preserveAspectRatio="xMidYMid meet">
-                                <path class="circle-path" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path>
+                                <path class="circle-path" d="M0 8c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z">
+                                </path>
                             </svg>
-                        {{httpCode}}: {{httpMessage}}</div>
+                            {{httpCode}}: {{httpMessage}}
+                        </div>
                         <div class="statusDescription">{{statusDescription}}</div>
                     </div>
                     {{#if schema}} <!-- Check if schema exists -->
@@ -49,8 +59,8 @@
                         <div class="schema">
                             <p class="type">{{schema.type}}</p>
                             <div>
-                            {{#renderProperties schema.properties}}
-                            {{/renderProperties}}
+                                {{#renderProperties schema.properties}}
+                                {{/renderProperties}}
                             </div>
                         </div>
                     </details>
@@ -61,4 +71,5 @@
         </details>
     </section>
 </body>
+
 </html>

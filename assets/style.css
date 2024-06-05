@@ -1,294 +1,328 @@
 :root {
-    --small-font: 1.4rem;
-    --connect-method: rgb(185, 94, 4);
-    --delete-method: rgb(211, 61, 61);
-    --get-method: rgb(52, 109, 219);
-    --head-method: rgb(185, 94, 4);
-    --options-method: rgb(115, 92, 255);
-    --patch-method: rgb(185, 94, 4);
-    --post-method: rgb(0, 136, 71);
-    --put-method: rgb(185, 94, 4);
-    --trace-method: rgb(185, 94, 4);
-    --background-color: rgb(245, 247, 249);
-    --text-color: rgb(59, 69, 78);
-    --type-color: rgb(52, 109, 219);
-    --bright-text-color: rgb(92, 105, 117);
-    --light-text-color: rgb(136, 153, 168);
-    --fainting-color: #f5f7f9;
-    --important-color: rgb(211, 61, 61);
-    --status-ok: rgb(0, 136, 71);
-    --status-bad: rgb(185, 94, 4);
-  }
+  --small-font: 1.4rem;
+  --connect-method: rgb(185, 94, 4);
+  --delete-method: rgb(211, 61, 61);
+  --get-method: rgb(52, 109, 219);
+  --head-method: rgb(185, 94, 4);
+  --options-method: rgb(115, 92, 255);
+  --patch-method: rgb(185, 94, 4);
+  --post-method: rgb(0, 136, 71);
+  --put-method: rgb(185, 94, 4);
+  --trace-method: rgb(185, 94, 4);
+  --background-color: rgb(245, 247, 249);
+  --text-color: rgb(59, 69, 78);
+  --type-color: rgb(52, 109, 219);
+  --bright-text-color: rgb(92, 105, 117);
+  --light-text-color: rgb(136, 153, 168);
+  --fainting-color: #f5f7f9;
+  --important-color: rgb(211, 61, 61);
+  --status-ok: rgb(0, 136, 71);
+  --status-bad: rgb(185, 94, 4);
+}
 
-html, body{
+html,
+body {
   text-rendering: optimizelegibility;
   margin: 0;
   padding: 0;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-body{
-    color: var(--text-color);
+body {
+  color: var(--text-color);
 }
 
 details,
 summary {
-    width: 100%;
+  width: 100%;
 }
 
-
-details #detailItems{
-    padding: 0 0 1rem 3rem;
+details #detailItems {
+  padding: 0 0 1rem 3rem;
 }
 
-details #detailItems > p:first-of-type{
-    margin-bottom:2.5rem;
+details #detailItems > p:first-of-type {
+  margin-bottom: 2.5rem;
 }
 
 details > summary {
-    cursor:pointer;
+  cursor: pointer;
 }
 
 details > summary::marker,
 details > summary::-webkit-details-marker {
-    display: flex;
+  display: flex;
 }
 
-section > details[open] > summary:not(.httpResponse):before{
-    transform: rotate(0);
+section > details[open] > summary:not(.httpResponse):before {
+  transform: rotate(0);
 }
 
 section > details > summary:not(.httpResponse):before {
-    content: "";
-    opacity: 0.6;
-    background-image: url("./arrow.svg");
-    cursor: pointer;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    width: calc(1.6 * 1.25rem);
-    height: calc(1.6 * 1.25rem);
-    position: absolute;
-    top: .33rem;
-    left: -.5rem;
-    transform: rotate(-90deg);
-    flex-shrink: 0;
+  content: "";
+  opacity: 0.6;
+  background-image: url("./arrow.svg");
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: calc(1.6 * 1.25rem);
+  height: calc(1.6 * 1.25rem);
+  position: absolute;
+  top: 0.33rem;
+  left: -0.5rem;
+  transform: rotate(-90deg);
+  flex-shrink: 0;
 }
 
-summary{
-    position: relative;
+summary {
+  position: relative;
 }
 
-summary div{
-    margin:1rem 3rem;
+summary div {
+  margin: 1rem 3rem;
 }
 
-section{
-    margin: 0;
-    padding: 1rem 1rem 1rem 2rem;
-    border: 1px solid rgb(227, 232, 237);
-    border-radius: .5rem;
-    width: fit-content;
-    min-width: 35rem;
+section {
+  margin: 0;
+  padding: 1rem 1rem 1rem 2rem;
+  border: 1px solid rgb(227, 232, 237);
+  border-radius: 0.5rem;
+  width: fit-content;
+  min-width: 35rem;
 }
 
-#baseUrl{
-    color: var(--light-text-color);
-    font-size: var(--small-font);
-    line-height: 2rem;
+#baseUrl {
+  color: var(--light-text-color);
+  font-size: var(--small-font);
+  line-height: 2rem;
 }
 
-.get{ background-color: var(--get-method); }
-.post{ background-color: var(--post-method); }
-.put{ background-color: var(--put-method);}
-
-.method{
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: var(--small-font);
-    color: white;
-    border-radius: 1rem;
-    padding: .25rem .75rem;
-    margin-right:1rem;
-    margin-left: -.25rem;
+.get {
+  background-color: var(--get-method);
+}
+.post {
+  background-color: var(--post-method);
+}
+.put {
+  background-color: var(--put-method);
 }
 
-.path{
-    font-weight:600;
-    font-size: var(--small-font);
-    color: var(--text-color);
+.method {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: var(--small-font);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.25rem 0.75rem;
+  margin-right: 1rem;
+  margin-left: -0.25rem;
 }
 
-#pathDetails, #requestBody{
-    color: var(--bright-text-color);
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    flex-shrink: 1;
-    font-size: var(--small-font);
-    margin-bottom: 3.2rem;
+.path {
+  font-weight: 600;
+  font-size: var(--small-font);
+  color: var(--text-color);
 }
 
-#pathDetails div, #requestBody div{
-    display: inline;
-    padding: 1rem 0;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
+#pathDetails {
+  color: var(--bright-text-color);
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-size: var(--small-font);
+  margin-bottom: 3.2rem;
 }
 
-#pathDetails div:first-child, #requestBody div:first-child{
-    width: 20rem;
-    padding: 0;
-    font-weight: 600;
+#pathDetails div {
+  display: inline;
+  padding: 1rem 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
-#pathDetails div:nth-child(2), #requestBody div:nth-child(2){
-    width: 9rem;
-    padding: 0;
+#pathDetails div:first-child {
+  width: 20rem;
+  padding: 0;
+  font-weight: 600;
 }
 
-#pathDetails div:last-child, #requestBody div:last-child{
-    flex: 1 1 0%;
-    margin-right: 2.5rem;
-    padding: 0;
+#pathDetails div:nth-child(2) {
+  width: 9rem;
+  padding: 0;
 }
 
-.httpResponse{
-    border-bottom: 1px solid var(--fainting-color);
-    display: flex;
-    flex-direction: column;
-    color: var(--bright-text-color);
-    padding: 1rem 0;
-    font-size: var(--small-font);
-    position: relative;
-    line-height: 1.5rem;
+#pathDetails div:last-child,
+#requestBody div:last-child {
+  flex: 1 1 0%;
+  margin-right: 2.5rem;
+  padding: 0;
 }
 
-.httpResponse details > summary {
-    cursor: pointer;
-    position: relative; 
-    width: fit-content;
+.httpResponse {
+  border-bottom: 1px solid var(--fainting-color);
+  display: flex;
+  flex-direction: column;
+  color: var(--bright-text-color);
+  padding: 1rem 0;
+  font-size: var(--small-font);
+  position: relative;
+  line-height: 1.5rem;
 }
 
-.httpResponse summary{
-    text-align: right;
-        position: relative;
+.httpResponse details > summary,
+#detailItems details > summary {
+  cursor: pointer;
+  position: relative;
+  width: fit-content;
 }
 
-.httpResponse details[open] > summary:before {
-    transform: rotate(0);
+.httpResponse summary,
+#detailItems summary {
+  text-align: right;
+  position: relative;
 }
 
-.httpResponse summary:before{
-    content: "";
-    right: 0;
-    cursor: pointer;
-    top: -2rem;
-    background-image: url("./arrow.svg");
-    transform: rotate(-90deg);
-    width: 1.25rem;
-    height: 1.25rem;
-    position: absolute;
+.httpResponse details[open] > summary:before,
+#detailItems details[open] > summary:before {
+  transform: rotate(0);
 }
 
-.httpResponse details .summary-content{
-    padding: 0 2rem;
+.httpResponse summary:before {
+  content: "";
+  right: 0;
+  cursor: pointer;
+  top: -2rem;
+  background-image: url("./arrow.svg");
+  transform: rotate(-90deg);
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
 }
 
-.httpResponseContainer{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0;
+.httpResponse details .summary-content,
+#detailItems details .summary-content {
+  padding: 0 2rem;
 }
 
-.httpResponseContainer .statusDescription{
-    /* empty */
+.httpResponseContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0;
 }
 
-.httpStatus{
-    width: 29rem;
-    font-weight: 700;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    height: 1.5rem;
+.httpResponseContainer .statusDescription {
+  /* empty */
 }
 
-.httpResponse details .schema{
-    background-color: var(--background-color);
-    border-radius: .5rem;
-    padding: 1rem 2rem;
-    margin-top: 1.6rem;
+.httpStatus {
+  width: 29rem;
+  font-weight: 700;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
 }
 
-.httpResponse .schema details{
-    margin-left: 1.6rem;
+.httpResponse details .schema {
+  background-color: var(--background-color);
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  margin-top: 1.6rem;
 }
 
-
-.httpResponse details .schema details[open] > summary:before{
-    content: "‒";
+.httpResponse .schema details {
+  margin-left: 1.6rem;
 }
 
-.httpResponse details .schema summary:before{
-    content: "+";
-    font-weight: 500;
-    cursor: pointer;
-    background-image:none;
-    transform: rotate(0);
-    color: var(--type-color);
-    font-size: 1.6rem;
-    position: absolute;
-    left: -1.6rem;
-    top: calc(1rem / 16);
+.httpResponse details .schema details[open] > summary:before {
+  content: "‒";
 }
 
-.httpResponse details .schema summary{
-    text-align: left;
-    color: var(--text-color);
+.httpResponse details .schema summary:before,
+#detailItems #requestBody summary:before {
+  content: "+";
+  font-weight: 500;
+  cursor: pointer;
+  background-image: none;
+  transform: rotate(0);
+  color: var(--type-color);
+  font-size: 1.6rem;
+  position: absolute;
+  left: -1.6rem;
+  top: 0;
 }
 
-.httpResponse details .schema div{
-    margin-left: 1.6rem;
+#detailItems #requestBody {
+  border-radius: 0.5rem;
+  padding: 0 2rem;
+  margin-bottom: 2.5rem;
+  font-size: var(--small-font);
 }
 
-.httpResponse details .schema .type{
-    color: var(--type-color);
-    margin-bottom: 0;
-    line-height: 2rem;
+#detailItems #requestBody summary,
+#detailItems #requestBody .schema {
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(52, 109, 219);
 }
 
-.httpResponse details .schema .comment{
-    margin:0;
-    color: var(--light-text-color);
-    font-weight: 500;
+#detailItems #requestBody .schema {
+  width: 100%;
+}
+
+#detailItems #requestBody .schema .type {
+  margin-bottom: 0;
+}
+
+.httpResponse details .schema summary,
+#detailItems #requestBody .schema summary {
+  text-align: left;
+  color: var(--text-color);
+}
+
+.httpResponse details .schema div {
+  margin-left: 1.6rem;
+}
+
+.httpResponse details .schema .type {
+  color: var(--type-color);
+  margin-bottom: 0;
+  line-height: 2rem;
+}
+
+.httpResponse details .schema .comment {
+  margin: 0;
+  color: var(--light-text-color);
+  font-weight: 500;
 }
 
 .title {
-    font-weight: 600;
-    color: var(--text-color);
-    margin-right: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-right: 1rem;
 }
 
-.pathName, .httpResponse details .schema .type, .httpResponse details .schema summary{
-    font-family: 'Courier New', Courier, monospace;
+.pathName,
+.httpResponse details .schema .type,
+.httpResponse details .schema summary {
+  font-family: "Courier New", Courier, monospace;
 }
 
 .required {
-    color: var(--important-color);
+  color: var(--important-color);
 }
 
 .subtitle {
-    font-size: var(--small-font);
-    font-weight: 700;
+  font-size: var(--small-font);
+  font-weight: 700;
 }
-
 
 /* SVG Styling */
 .circle-svg {
   vertical-align: middle;
   width: 18px;
   height: 18px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .circle-path {
@@ -307,9 +341,9 @@ section{
 }
 
 .markdown-section * {
-    line-height: 2.2rem;
+  line-height: 2.2rem;
 }
 
 .markdown-section section {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }

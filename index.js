@@ -4,10 +4,7 @@ const path = require("path");
 const { getMethod, getParameters, getResponses } = require("./helpers");
 
 // Read and compile the template
-const templateSource = fs.readFileSync(
-  path.join(__dirname, "_layouts", "dynamic_template.hbs"),
-  "utf8"
-);
+const templateSource = fs.readFileSync(path.join(__dirname, "_layouts", "dynamic_template.hbs"), "utf8");
 
 Handlebars.registerHelper("renderProperties", function (properties, options) {
   if (!properties || typeof properties !== "object") {
@@ -27,10 +24,7 @@ Handlebars.registerHelper("renderProperties", function (properties, options) {
     switch (type) {
       case "object":
         if (property?.properties) {
-          const nestedProperties = Handlebars.helpers.renderProperties(
-            property.properties,
-            options
-          );
+          const nestedProperties = Handlebars.helpers.renderProperties(property.properties, options);
           output.push(`
             <details>
               <summary>
@@ -46,10 +40,7 @@ Handlebars.registerHelper("renderProperties", function (properties, options) {
         if (property?.items?.properties) {
           const maxItems = property?.maxItems;
           const maxItemsStr = maxItems ? `(${maxItems})` : "";
-          const nestedProperties = Handlebars.helpers.renderProperties(
-            property.items.properties,
-            options
-          );
+          const nestedProperties = Handlebars.helpers.renderProperties(property.items.properties, options);
           output.push(`
             <details>
               <summary>
@@ -101,10 +92,7 @@ module.exports = {
 
         const beforeMarker = content.substring(0, start);
         const afterMarker = content.substring(end + markerEnd.length);
-        const markerContent = content.substring(
-          start + markerStart.length,
-          end
-        );
+        const markerContent = content.substring(start + markerStart.length, end);
 
         let data;
         try {
@@ -115,23 +103,34 @@ module.exports = {
           return page;
         }
 
-        const parameters = getParameters(data, "/{input}");
-        const responses = getResponses(data, "/{input}");
-        const { name, required, type, maxLength } = parameters;
-        const { info, schemes, host, basePath } = data;
+        // Get all keys of the 'paths' object
+        const keys = Object.keys(data.paths);
+
+        // Get the first key from the keys array
+        const firstKey = keys[0];
+
+        const parameters = getParameters(data, firstKey);
+        const responses = getResponses(data, firstKey);
+
+        const { name = "", required, type, maxLength, schema = "" } = parameters || {};
+
+        const { info, schemes, host, basePath, paths } = data;
         const { description, title } = info;
+        const path = Object.keys(paths ?? {})[0];
         const paramName = `${parameters?.name}`;
+        console.log("gugus", schema);
 
         const dynamicContent = template({
           apiTitle: title,
           method: getMethod(data, "/{input}"),
           baseUrl: schemes[0] + "://" + host + basePath,
-          path: name && `/{${name}}`,
+          path: path === "/" ? "" : `${path.replace("/", "")}`,
           description: description,
           paramName: paramName,
           required: required ? "*" : "",
           type: type,
           paramDescription: maxLength ? `max. length: ${maxLength}` : "--",
+          requestBody: schema,
           responses: data.responses ?? responses,
         });
         content = beforeMarker + dynamicContent + afterMarker;
