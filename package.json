@@ -2,7 +2,7 @@
   "name": "honkit-plugin-api-documentation",
   "repository": {
     "type": "git",
-    "url": "https://github.com/0815pascal/honkit-plugin-api-documentation"
+    "url": "git+https://github.com/0815pascal/honkit-plugin-api-documentation.git"
   },
   "version": "0.2.0",
   "main": "index.js",
