@@ -1,18 +1,29 @@
 {
   "name": "honkit-plugin-api-documentation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0815pascal/honkit-plugin-api-documentation"
+  },
   "version": "0.0.1",
-  "description": "A Honkit plugin to dynamically generate templates using Handlebars",
+  "main": "index.js",
+  "description": "A Honkit plugin to dynamically generate an API documentation using Handlebars",
   "keywords": [
     "honkit",
     "gitbook",
     "plugin",
     "dynamic",
-    "template"
+    "template",
+    "api",
+    "swagger",
+    "openApi"
   ],
   "author": "Pascal Witzig",
   "license": "MIT",
   "dependencies": {
     "handlebars": "^4.7.8"
+  },
+  "peerDependencies": {
+    "honkit": ">=3.0.0"
   },
   "engines": {
     "node": ">=18.0.0",
