@@ -24,7 +24,14 @@ function tryPaths(data, firstKey) {
 
 function tryWithProperty(pathData, property) {
   console.log("respi", property, pathData?.post?.[property]);
-  return pathData?.get?.[property] ?? pathData?.post?.[property] ?? pathData?.post?.[property] ?? null;
+  const methods = ["get", "post", "put", "patch", "delete"]; 
+  for (const method of methods) {
+    const value = pathData?.[method]?.[property];
+    if (value) {
+      return value;
+    }
+  }
+  return null;
 }
 
 function getMethod(data, firstKey) {
