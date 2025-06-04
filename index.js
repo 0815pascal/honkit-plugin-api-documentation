@@ -96,7 +96,6 @@ module.exports = {
 
         let data;
         try {
-          console.log(markerContent.trim());
           data = JSON.parse(markerContent.trim());
         } catch (error) {
           console.error("Error parsing JSON for dynamic template:", error);
@@ -116,15 +115,14 @@ module.exports = {
 
         const { info, schemes, host, basePath, paths } = data;
         const { description, title } = info;
-        const path = Object.keys(paths ?? {})[0];
+        const endpointPath = Object.keys(paths ?? {})[0];
         const paramName = `${parameters?.name}`;
-        console.log("gugus", schema);
 
         const dynamicContent = template({
           apiTitle: title,
-          method: getMethod(data, "/{input}"),
+          method: getMethod(data, firstKey),
           baseUrl: schemes[0] + "://" + host + basePath,
-          path: path === "/" ? "" : `${path.replace("/", "")}`,
+          path: endpointPath === "/" ? "" : `${endpointPath.replace("/", "")}`,
           description: description,
           paramName: paramName,
           required: required ? "*" : "",
